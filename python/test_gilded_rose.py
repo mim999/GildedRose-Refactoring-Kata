@@ -47,13 +47,19 @@ class GildedRoseTest(unittest.TestCase):
         gilded_rose.update_quality()
         self.assertTrue(items[0].quality <= 50)
 
-    # tests if sulfuras values stay the same
-    def test_sulfuras(self):
+    # tests if sulfuras sellin stay the same
+    def test_sulfuras_sellin(self):
+        items = [Item("Sulfuras, Hand of Ragnaros", sell_in=0, quality=80)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        self.assertEqual(0, items[0].sell_in)
+
+     # tests if sulfuras quality stay the same
+    def test_sulfuras_quality(self):
         items = [Item("Sulfuras, Hand of Ragnaros", sell_in=0, quality=80)]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
         self.assertEqual(80, items[0].quality)
-        self.assertEqual(0, items[0].sell_in)
 
     # test backstage increase by one
     def test_backstage_increase_by_one(self):
