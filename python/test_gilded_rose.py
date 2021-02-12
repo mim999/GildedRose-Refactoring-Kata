@@ -11,6 +11,12 @@ class GildedRoseTest(unittest.TestCase):
         gilded_rose.update_quality()
         self.assertEqual(19, items[0].quality)
 
+    def test_time_degretation(self):
+        items = [Item("foo", sell_in=5, quality=20)]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        self.assertEqual(4, items[0].sell_in)
+
 
 if __name__ == '__main__':
     unittest.main()
