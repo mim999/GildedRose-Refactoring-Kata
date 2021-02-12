@@ -48,22 +48,40 @@ class GildedRoseTest(unittest.TestCase):
         self.assertEqual(80, items[0].quality)
         self.assertEqual(0, items[0].sell_in)
 
-    def test_backstage(self):
+    def test_backstage_increase_by_one(self):
         items = [Item(name="Backstage passes to a TAFKAL80ETC concert",
-                      sell_in=15, quality=20),
-                 Item(name="Backstage passes to a TAFKAL80ETC concert",
-                      sell_in=10, quality=20),
-                 Item(name="Backstage passes to a TAFKAL80ETC concert",
-                      sell_in=5, quality=20),
-                 Item(name="Backstage passes to a TAFKAL80ETC concert",
-                      sell_in=0, quality=20)
+                      sell_in=15, quality=20)
                  ]
         gilded_rose = GildedRose(items)
         gilded_rose.update_quality()
         self.assertEqual(21, items[0].quality)
-        self.assertEqual(22, items[1].quality)
-        self.assertEqual(23, items[2].quality)
-        self.assertEqual(0, items[3].quality)
+
+    def test_backstage_increase_by_two(self):
+        items = [
+            Item(name="Backstage passes to a TAFKAL80ETC concert",
+                      sell_in=10, quality=20)
+        ]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        self.assertEqual(22, items[0].quality)
+
+    def test_backstage_increase_by_three(self):
+        items = [
+            Item(name="Backstage passes to a TAFKAL80ETC concert",
+                      sell_in=5, quality=20)
+        ]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        self.assertEqual(23, items[0].quality)
+
+    def test_backstage_quality_zero(self):
+        items = [
+            Item(name="Backstage passes to a TAFKAL80ETC concert",
+                      sell_in=0, quality=20)
+        ]
+        gilded_rose = GildedRose(items)
+        gilded_rose.update_quality()
+        self.assertEqual(0, items[0].quality)
 
     def test_conjured(self):
         items = [Item(name="Conjured Mana Cake", sell_in=3, quality=6)]
