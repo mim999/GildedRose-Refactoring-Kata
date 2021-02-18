@@ -46,6 +46,7 @@ class GildedRose {
         if(item.name.equals(AGED_BRIE_NAME)){
             increaseQuality(item, 1);
         }
+
         // backstage increase quality in three stages
         else if(item.name.equals(BACKSTAGE_PASS_NAME)) {
             if (item.sellIn <= BACKSTAGE_PASS_TRIPLE_SELLIN) {
@@ -58,15 +59,21 @@ class GildedRose {
                 increaseQuality(item, 1);
             }
         }
+
         // conjured decreases twice the speed
         else if(item.name.equals(CONJURED_NAME)){
             decreaseQuality(item,2);
         }
+
+        // sulfuras stays the same
+        else if (item.name.equals(SULFURAS_NAME)) {
+                return;
+            }
+
         // all else decreases by 1
-        else if(!item.name.equals(SULFURAS_NAME)){
+        else{
             decreaseQuality(item,1);
         }
-
     }
 
     // updates quality of items with sellin < 0
@@ -79,8 +86,14 @@ class GildedRose {
         else if (item.name.equals(BACKSTAGE_PASS_NAME)) {
             item.quality = 0;
         }
+
+        // sulfuras stays the same
+        else if (item.name.equals(SULFURAS_NAME)) {
+            return;
+        }
+
         // all else loses twice as fast
-        else if (!item.name.equals(SULFURAS_NAME)) {
+        else{
             decreaseQuality(item, 2);
         }
     }
