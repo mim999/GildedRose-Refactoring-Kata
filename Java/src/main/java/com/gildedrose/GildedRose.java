@@ -42,15 +42,24 @@ class GildedRose {
     }
 
     private void updateQuality(Item item) {
-        if (item.name.equals(AGED_BRIE_NAME)
-                || item.name.equals(BACKSTAGE_PASS_NAME)) {
-                    checkBrie(item);
-                }
-        else if (item.quality > 0) {
-            if (!item.name.equals(SULFURAS_NAME)) {
-                decreaseQuality(item);
+        if(item.name.equals(AGED_BRIE_NAME)){
+            increaseQuality(item);
+        }
+        else if(item.name.equals(BACKSTAGE_PASS_NAME)) {
+            increaseQuality(item);
+
+            if (item.sellIn <= BACKSTAGE_PASS_DOUBLE_SELLIN) {
+                increaseQuality(item);
+            }
+
+            if (item.sellIn <= BACKSTAGE_PASS_TRIPLE_SELLIN) {
+                increaseQuality(item);
             }
         }
+        else if(!item.name.equals(SULFURAS_NAME)){
+            decreaseQuality(item);
+        }
+
     }
 
     private void increaseQuality(Item item) {
@@ -74,23 +83,6 @@ class GildedRose {
         }
         else if (!item.name.equals(SULFURAS_NAME)) {
             decreaseQuality(item);
-        }
-    }
-
-    private void checkBrie(Item item) {
-        if (item.name.equals(BACKSTAGE_PASS_NAME)) {
-            checkBackstage(item);
-        }
-        increaseQuality(item);
-    }
-
-    private void checkBackstage(Item item) {
-        if (item.sellIn <= BACKSTAGE_PASS_DOUBLE_SELLIN) {
-            increaseQuality(item);
-        }
-
-        if (item.sellIn <= BACKSTAGE_PASS_TRIPLE_SELLIN) {
-            increaseQuality(item);
         }
     }
 }
