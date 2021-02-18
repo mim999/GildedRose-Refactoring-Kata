@@ -23,15 +23,13 @@ class GildedRose {
 
     private void UpdateSingleItem(Item item) {
         updateQuality(item);
-
         updateSellin(item);
-
         checkSellinPassed(item);
     }
 
     private void checkSellinPassed(Item item) {
         if (item.sellIn < 0) {
-            updateSellinPassed(item);
+            updateIfSellinPassed(item);
         }
     }
 
@@ -74,7 +72,7 @@ class GildedRose {
         }
     }
 
-    private void updateSellinPassed(Item item) {
+    private void updateIfSellinPassed(Item item) {
         if (item.name.equals(AGED_BRIE_NAME)) {
             increaseQuality(item);
         }
