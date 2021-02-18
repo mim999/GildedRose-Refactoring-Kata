@@ -63,9 +63,13 @@ class GildedRose {
                     item.quality = item.quality - item.quality;
                 }
             } else {
-                if (item.quality < 50) {
-                    item.quality = item.quality + 1;
-                }
+            checkMaxQuality(item);
+        }
+    }
+
+    private void checkMaxQuality(Item item) {
+        if (item.quality < 50) {
+            item.quality = item.quality + 1;
         }
     }
 
@@ -81,15 +85,11 @@ class GildedRose {
 
     private void checkBackstage(Item item) {
         if (item.sellIn < 11) {
-            if (item.quality < 50) {
-                item.quality = item.quality + 1;
-            }
+            checkMaxQuality(item);
         }
 
         if (item.sellIn < 6) {
-            if (item.quality < 50) {
-                item.quality = item.quality + 1;
-            }
+            checkMaxQuality(item);
         }
     }
 }
