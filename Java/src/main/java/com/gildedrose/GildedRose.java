@@ -45,49 +45,52 @@ class GildedRose {
         if (item.name.equals(AGED_BRIE_NAME)
                 || item.name.equals(BACKSTAGE_PASS_NAME)) {
                     checkBrie(item);
-                } else {
-            if (item.quality > 0) {
-                if (!item.name.equals(SULFURAS_NAME)) {
-                    item.quality = item.quality - 1;
                 }
+        else if (item.quality > 0) {
+            if (!item.name.equals(SULFURAS_NAME)) {
+                decreaseQuality(item);
             }
         }
     }
 
-    private void updateSellinPassed(Item item) {
-        if (item.name.equals(AGED_BRIE_NAME)) {
-            checkMaxQuality(item);
-        }
-        else if (item.name.equals(BACKSTAGE_PASS_NAME)) {
-                item.quality = 0;
-        }
-        else if (!item.name.equals(SULFURAS_NAME)) {
-            if (item.quality > 0) {
-                item.quality = item.quality - 1;
-            }
-        }
-    }
-
-    private void checkMaxQuality(Item item) {
+    private void IncreaseQuality(Item item) {
         if (item.quality < MAX_QUALITY) {
             item.quality = item.quality + 1;
         }
     }
 
+    private void decreaseQuality(Item item) {
+        if (item.quality > 0) {
+            item.quality = item.quality - 1;
+        }
+    }
+
+    private void updateSellinPassed(Item item) {
+        if (item.name.equals(AGED_BRIE_NAME)) {
+            IncreaseQuality(item);
+        }
+        else if (item.name.equals(BACKSTAGE_PASS_NAME)) {
+            item.quality = 0;
+        }
+        else if (!item.name.equals(SULFURAS_NAME)) {
+            decreaseQuality(item);
+        }
+    }
+    
     private void checkBrie(Item item) {
         if (item.name.equals(BACKSTAGE_PASS_NAME)) {
             checkBackstage(item);
         }
-        checkMaxQuality(item);
+        IncreaseQuality(item);
     }
 
     private void checkBackstage(Item item) {
         if (item.sellIn <= BACKSTAGE_PASS_DOUBLE_SELLIN) {
-            checkMaxQuality(item);
+            IncreaseQuality(item);
         }
 
         if (item.sellIn <= BACKSTAGE_PASS_TRIPLE_SELLIN) {
-            checkMaxQuality(item);
+            IncreaseQuality(item);
         }
     }
 }
