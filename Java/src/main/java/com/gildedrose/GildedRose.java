@@ -24,18 +24,8 @@ class GildedRose {
     private void UpdateSingleItem(Item item) {
         updateQuality(item);
         updateSellin(item);
-        checkSellinPassed(item);
-    }
-
-    private void checkSellinPassed(Item item) {
         if (item.sellIn < 0) {
             updateIfSellinPassed(item);
-        }
-    }
-
-    private void updateSellin(Item item) {
-        if (!item.name.equals(SULFURAS_NAME)) {
-            item.sellIn = item.sellIn - 1;
         }
     }
 
@@ -60,27 +50,35 @@ class GildedRose {
 
     }
 
-    private void increaseQuality(Item item) {
-        if (item.quality < MAX_QUALITY) {
-            item.quality = item.quality + 1;
-        }
-    }
-
-    private void decreaseQuality(Item item) {
-        if (item.quality > 0) {
-            item.quality = item.quality - 1;
+    private void updateSellin(Item item) {
+        if (!item.name.equals(SULFURAS_NAME)) {
+            item.sellIn = item.sellIn - 1;
         }
     }
 
     private void updateIfSellinPassed(Item item) {
         if (item.name.equals(AGED_BRIE_NAME)) {
-            increaseQuality(item);
+            increaseQuality(item, 1);
         }
         else if (item.name.equals(BACKSTAGE_PASS_NAME)) {
             item.quality = 0;
         }
         else if (!item.name.equals(SULFURAS_NAME)) {
-            decreaseQuality(item);
+            decreaseQuality(item, 1);
         }
     }
+
+    private void increaseQuality(Item item, int value) {
+        if (item.quality < MAX_QUALITY) {
+            item.quality = item.quality + value;
+        }
+    }
+
+    private void decreaseQuality(Item item, int value) {
+        if (item.quality > 0) {
+            item.quality = item.quality - value;
+        }
+    }
+
+
 }
