@@ -53,7 +53,7 @@ class GildedRose {
         }
     }
 
-    private void IncreaseQuality(Item item) {
+    private void increaseQuality(Item item) {
         if (item.quality < MAX_QUALITY) {
             item.quality = item.quality + 1;
         }
@@ -67,7 +67,7 @@ class GildedRose {
 
     private void updateSellinPassed(Item item) {
         if (item.name.equals(AGED_BRIE_NAME)) {
-            IncreaseQuality(item);
+            increaseQuality(item);
         }
         else if (item.name.equals(BACKSTAGE_PASS_NAME)) {
             item.quality = 0;
@@ -76,21 +76,21 @@ class GildedRose {
             decreaseQuality(item);
         }
     }
-    
+
     private void checkBrie(Item item) {
         if (item.name.equals(BACKSTAGE_PASS_NAME)) {
             checkBackstage(item);
         }
-        IncreaseQuality(item);
+        increaseQuality(item);
     }
 
     private void checkBackstage(Item item) {
         if (item.sellIn <= BACKSTAGE_PASS_DOUBLE_SELLIN) {
-            IncreaseQuality(item);
+            increaseQuality(item);
         }
 
         if (item.sellIn <= BACKSTAGE_PASS_TRIPLE_SELLIN) {
-            IncreaseQuality(item);
+            increaseQuality(item);
         }
     }
 }
