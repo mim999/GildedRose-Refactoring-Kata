@@ -35,7 +35,7 @@ class GildedRose {
         }
     }
 
-    private void updateSellinPassed(Item item) {
+    private void updateSellin(Item item) {
         if (!item.name.equals(SULFURAS_NAME)) {
             item.sellIn = item.sellIn - 1;
         }
@@ -54,7 +54,7 @@ class GildedRose {
         }
     }
 
-    private void sellinPassed(Item item) {
+    private void updateSellinPassed(Item item) {
         if (!item.name.equals(AGED_BRIE_NAME)) {
                 if (!item.name.equals(BACKSTAGE_PASS_NAME)) {
                     if (item.quality > 0) {
