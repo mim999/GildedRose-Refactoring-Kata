@@ -56,17 +56,14 @@ class GildedRose {
 
     private void updateSellinPassed(Item item) {
         if (item.name.equals(AGED_BRIE_NAME)) {
-        checkMaxQuality(item);
+            checkMaxQuality(item);
         }
-        else {
-            if (item.name.equals(BACKSTAGE_PASS_NAME)) {
-                item.quality = item.quality - item.quality;
-            } else {
-                if (item.quality > 0) {
-                    if (!item.name.equals(SULFURAS_NAME)) {
-                        item.quality = item.quality - 1;
-                    }
-                }
+        else if (item.name.equals(BACKSTAGE_PASS_NAME)) {
+                item.quality = 0;
+        }
+        else if (!item.name.equals(SULFURAS_NAME)) {
+            if (item.quality > 0) {
+                item.quality = item.quality - 1;
             }
         }
     }
