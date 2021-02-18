@@ -26,16 +26,16 @@ class GildedRose {
 
         updateSellin(item);
 
-        updateSellinPassed(item);
+        checkSellinPassed(item);
     }
 
-    private void updateSellinPassed(Item item) {
+    private void checkSellinPassed(Item item) {
         if (item.sellIn < 0) {
-            sellinPassed(item);
+            updateSellinPassed(item);
         }
     }
 
-    private void updateSellin(Item item) {
+    private void updateSellinPassed(Item item) {
         if (!item.name.equals(SULFURAS_NAME)) {
             item.sellIn = item.sellIn - 1;
         }
