@@ -7,6 +7,9 @@ class GildedRose {
     public static final String AGED_BRIE_NAME = "Aged Brie";
     public static final String CONJURED_NAME = "Conjured Mana Cake";
 
+    public static final int MAX_QUALITY = 50;
+    public static final int BACKSTAGE_PASS_DOUBLE_SELLIN = 10;
+    public static final int BACKSTAGE_PASS_TRIPLE_SELLIN = 5;
 
     public GildedRose(Item[] items) {
         this.items = items;
@@ -68,27 +71,24 @@ class GildedRose {
     }
 
     private void checkMaxQuality(Item item) {
-        if (item.quality < 50) {
+        if (item.quality < MAX_QUALITY) {
             item.quality = item.quality + 1;
         }
     }
 
     private void checkBrie(Item item) {
-        if (item.quality < 50) {
-            item.quality = item.quality + 1;
-
-            if (item.name.equals(BACKSTAGE_PASS_NAME)) {
-                checkBackstage(item);
-            }
+        if (item.name.equals(BACKSTAGE_PASS_NAME)) {
+            checkBackstage(item);
         }
+        checkMaxQuality(item);
     }
 
     private void checkBackstage(Item item) {
-        if (item.sellIn < 11) {
+        if (item.sellIn <= BACKSTAGE_PASS_DOUBLE_SELLIN) {
             checkMaxQuality(item);
         }
 
-        if (item.sellIn < 6) {
+        if (item.sellIn <= BACKSTAGE_PASS_TRIPLE_SELLIN) {
             checkMaxQuality(item);
         }
     }
