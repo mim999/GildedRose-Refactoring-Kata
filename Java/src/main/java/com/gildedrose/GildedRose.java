@@ -31,6 +31,12 @@ class GildedRose {
         }
     }
 
+    private void updateSellin(Item item) {
+        if (!item.name.equals(SULFURAS_NAME)) {
+            item.sellIn = item.sellIn - 1;
+        }
+    }
+
     private void updateQuality(Item item) {
         if(item.name.equals(AGED_BRIE_NAME)){
             increaseQuality(item, 1);
@@ -50,12 +56,6 @@ class GildedRose {
             decreaseQuality(item,1);
         }
 
-    }
-
-    private void updateSellin(Item item) {
-        if (!item.name.equals(SULFURAS_NAME)) {
-            item.sellIn = item.sellIn - 1;
-        }
     }
 
     private void updateQualityExpired(Item item) {
