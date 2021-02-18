@@ -52,6 +52,9 @@ class GildedRose {
                 increaseQuality(item, 1);
             }
         }
+        else if(item.name.equals(CONJURED_NAME)){
+            decreaseQuality(item,2);
+        }
         else if(!item.name.equals(SULFURAS_NAME)){
             decreaseQuality(item,1);
         }
